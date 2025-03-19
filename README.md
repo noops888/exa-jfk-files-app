@@ -1,7 +1,7 @@
 # 💬 JFK Files Chat App
 ### Powered by [Exa](https://exa.ai) - The Web Search API
 
-### Try the tool: [JFK Files Chat App](https://jfk.exa.ai//)
+### Try the tool: [Chat With JFK Files](https://jfk.exa.ai//)
 
 ![Screenshot](https://jfk.exa.ai/opengraph-image.jpg)
 
