@@ -103,13 +103,24 @@ export default function Page() {
         } z-40 transition-all duration-300`}>
         <div className={`${
           hasMessages 
-            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4' 
+            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4 relative' 
             : 'w-full md:max-w-3xl mx-auto px-4 md:px-6'
           }`}>
           {!hasMessages && (
             <div className="text-center pb-6 md:pb-8">
               <h1 className="text-3xl md:text-6xl font-medium text-gray-800 mb-3 md:mb-4">Chat with JFK Files</h1>
               <p className="text-md md:text-xl text-gray-600 mb-6 px-4 max-w-3xl mx-auto">find hidden secrets in those 80 thousand pages of JFK files</p>
+            </div>
+          )}
+          {hasMessages && (
+            <div className="absolute -top-8 right-4 md:right-6">
+              <a
+                href="https://jfk.exa.ai"
+                target="_blank"
+                className="text-sm text-gray-500 hover:text-[var(--brand-default)] transition-colors duration-200"
+              >
+                New chat ↗
+              </a>
             </div>
           )}
           <form ref={formRef} onSubmit={handleSubmit} className="relative flex w-full">
