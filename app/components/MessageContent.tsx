@@ -1,46 +1,57 @@
-// Helper function to convert URLs in text to clickable links
+// Helper function to render markdown-like content
+import React from 'react';
+
 const MessageContent = ({ content }: { content: string }) => {
-    // Regular expression to match URLs, including those in bullet points
-    const urlRegex = /(https?:\/\/[^\s•]+)/g;
+  // Process the content to handle markdown-like syntax
+  const processContent = (text: string) => {
+    // Process the text in a specific order to avoid conflicts
+
+    // Replace heading levels
+    text = text.replace(/^# (.*?)$/gm, '<h1 class="text-2xl font-bold mt-4 mb-2">$1</h1>');
+    text = text.replace(/^## (.*?)$/gm, '<h2 class="text-xl font-bold mt-3 mb-2">$1</h2>');
+    text = text.replace(/^### (.*?)$/gm, '<h3 class="text-lg font-bold mt-3 mb-1">$1</h3>');
     
-    // Split content by newlines to handle bullet points
-    const lines = content.split('\n');
+    // Replace bold text (**bold**)
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
     
-    return (
-      <>
-        {lines.map((line, lineIndex) => {
-          // Check if line is empty
-          if (!line.trim()) {
-            return <br key={lineIndex} />;
-          }
-  
-          // Split the line by URLs
-          const parts = line.split(urlRegex);
-          
-          return (
-            <div key={lineIndex} className="mb-1">
-              {parts.map((part, partIndex) => {
-                // Check if this part is a URL
-                if (part.match(urlRegex)) {
-                  return (
-                    <a
-                      key={partIndex}
-                      href={part}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--brand-default)] hover:text-[var(--brand-muted)] underline"
-                    >
-                      {part}
-                    </a>
-                  );
-                }
-                return <span key={partIndex}>{part}</span>;
-              })}
-            </div>
-          );
-        })}
-      </>
+    // Replace italic text (*italic*)
+    text = text.replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+    
+    // Handle bullet points
+    // First, identify bullet point lists and wrap them in <ul> tags
+    let bulletListPattern = /^(\s*[-*]\s+.*(?:\n\s*[-*]\s+.*)*)/gm;
+    text = text.replace(bulletListPattern, '<ul class="list-disc pl-5 space-y-1 my-2">$1</ul>');
+    
+    // Then convert each bullet point line to <li> elements
+    text = text.replace(/^\s*[-*]\s+(.*?)$/gm, '<li>$1</li>');
+    
+    // Handle numbered lists
+    // First, identify numbered lists and wrap them in <ol> tags
+    let numberedListPattern = /^(\s*\d+\.\s+.*(?:\n\s*\d+\.\s+.*)*)/gm;
+    text = text.replace(numberedListPattern, '<ol class="list-decimal pl-5 space-y-1 my-2">$1</ol>');
+    
+    // Then convert each numbered point to <li> elements
+    text = text.replace(/^\s*\d+\.\s+(.*?)$/gm, '<li>$1</li>');
+    
+    // Replace URLs with links
+    text = text.replace(
+      /(https?:\/\/[^\s]+)/g,
+      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[var(--brand-default)] hover:text-[var(--brand-muted)] underline">$1</a>'
     );
+
+    // Replace line breaks (after all list processing is done)
+    text = text.replace(/\n/g, '<br />');
+    
+    return text;
   };
-  
-  export default MessageContent; 
+
+  // Create markup object from processed content
+  const createMarkup = () => {
+    return { __html: processContent(content) };
+  };
+
+  // Render the processed content
+  return <div className="markdown-content" dangerouslySetInnerHTML={createMarkup()} />;
+};
+
+export default MessageContent; 
