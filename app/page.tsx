@@ -116,7 +116,6 @@ export default function Page() {
             <div className="absolute -top-8 right-4 md:right-6">
               <a
                 href="https://jfk.exa.ai"
-                target="_blank"
                 className="text-sm text-gray-500 hover:text-[var(--brand-default)] transition-colors duration-200"
               >
                 New chat ↗
