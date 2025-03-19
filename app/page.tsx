@@ -28,7 +28,7 @@ export default function Page() {
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-b z-50">
         <div className="md:max-w-5xl mx-auto px-3 md:px-6 py-2 flex justify-between items-center">
           <a
-            href="https://dashboard.exa.ai"
+            href="https://dashboard.exa.ai/playground/search?q=JFK%20assassination%20files&filters=%7B%22text%22%3A%22true%22%2C%22type%22%3A%22neural%22%2C%22useAutoprompt%22%3Atrue%2C%22numResults%22%3A100%2C%22includeDomains%22%3A%5B%22www.archives.gov%22%5D%2C%22startCrawlDate%22%3A%222025-03-16T18%3A30%3A01.000Z%22%7D"
             target="_blank"
             className="flex items-center px-3 md:px-4 py-1 md:py-1.5 bg-white border-2 border-[var(--brand-default)] text-[var(--brand-default)] 
             rounded-full hover:bg-[var(--brand-default)] hover:text-white transition-all duration-200 

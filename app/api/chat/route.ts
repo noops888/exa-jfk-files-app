@@ -31,7 +31,8 @@ export async function POST(req: Request) {
                 type: 'neural',
                 useAutoprompt: true,
                 includeDomains: ['www.archives.gov'],
-                text: true
+                text: true,
+                startCrawlDate: "2025-03-16T18:30:01.000Z"            
               }
             );
             return results.results;
