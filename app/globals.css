@@ -148,6 +148,10 @@ h1, h2, h3, h4, h5, h6 {
 .markdown-content a {
   color: var(--brand-default);
   text-decoration: underline;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  display: inline-block;
 }
 
 .markdown-content a:hover {
@@ -164,4 +168,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .markdown-content p {
   margin-bottom: 0.5rem;
+}
+
+/* Custom utility class for better link wrapping */
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }

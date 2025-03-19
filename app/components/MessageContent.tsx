@@ -33,10 +33,10 @@ const MessageContent = ({ content }: { content: string }) => {
     // Then convert each numbered point to <li> elements
     text = text.replace(/^\s*\d+\.\s+(.*?)$/gm, '<li>$1</li>');
     
-    // Replace URLs with links
+    // Replace URLs with links - adding word-break and overflow-wrap to handle long URLs
     text = text.replace(
       /(https?:\/\/[^\s]+)/g,
-      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[var(--brand-default)] hover:text-[var(--brand-muted)] underline">$1</a>'
+      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[var(--brand-default)] hover:text-[var(--brand-muted)] underline break-words overflow-wrap-anywhere">$1</a>'
     );
 
     // Replace line breaks (after all list processing is done)
@@ -51,7 +51,7 @@ const MessageContent = ({ content }: { content: string }) => {
   };
 
   // Render the processed content
-  return <div className="markdown-content" dangerouslySetInnerHTML={createMarkup()} />;
+  return <div className="markdown-content break-words overflow-hidden" dangerouslySetInnerHTML={createMarkup()} />;
 };
 
 export default MessageContent; 

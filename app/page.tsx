@@ -76,7 +76,7 @@ export default function Page() {
                       : 'text-gray-900 text-sm md:text-base'
                   }`}
                 >
-                  <div className="whitespace-pre-wrap text-[14px] md:text-[15px]">
+                  <div className="whitespace-pre-wrap text-[14px] md:text-[15px] break-words overflow-hidden">
                     <MessageContent content={message.content} />
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function Page() {
         } z-40 transition-all duration-300 ${!hasMessages ? '-mt-10 md:my-10' : ''}`}>
         <div className={`${
           hasMessages 
-            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4' 
+            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4 relative' 
             : 'w-full md:max-w-3xl mx-auto px-4 md:px-6'
           }`}>
           {!hasMessages && (
