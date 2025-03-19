@@ -23,15 +23,15 @@ const reckless = localFont({
 
 export const metadata: Metadata = {
   title: "Chat with JFK Files",
-  description: "Chat with JFK assassination files using Exa.",
+  description: "Chat with JFK assassination files using Exa",
   openGraph: {
     title: "Chat with JFK Files",
-    description: "Chat with JFK assassination files using Exa.",
+    description: "Chat with JFK assassination files using Exa",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://jfkfiles.exa.ai/opengraph-image.jpg",
+        url: "https://jfk.exa.ai/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "Chat with JFK Files"
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image", 
     title: "Chat with JFK Files",
-    description: "Chat with JFK assassination files using Exa.",
-    images: ["https://jfkfiles.exa.ai/opengraph-image.jpg"]
+    description: "Chat with JFK assassination files using Ex.",
+    images: ["https://jfk.exa.ai/opengraph-image.jpg"]
   },
-  metadataBase: new URL("https://jfkfiles.exa.ai"),
+  metadataBase: new URL("https://jfk.exa.ai"),
   robots: {
     index: true,
     follow: true
