@@ -26,7 +26,7 @@ export default function Page() {
     <>
       {/* Top Navigation Bar */}
       <div className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-b z-50">
-        <div className="md:max-w-5xl mx-auto px-3 md:px-6 py-2 md:py-3 flex justify-between items-center">
+        <div className="md:max-w-5xl mx-auto px-3 md:px-6 py-2 flex justify-between items-center">
           <a
             href="https://dashboard.exa.ai"
             target="_blank"
@@ -60,7 +60,7 @@ export default function Page() {
       </div>
 
       {/* Chat Messages */}
-      <div className="md:max-w-5xl mx-auto px-3 md:px-6 py-4 md:py-6 pt-16 md:pt-20 pb-20 md:pb-24 space-y-4 md:space-y-6">
+      <div className="md:max-w-5xl mx-auto px-3 md:px-6 py-4 md:py-6 pt-12 md:pt-20 pb-20 md:pb-24 space-y-4 md:space-y-6">
         <div className="space-y-4 md:space-y-6">
           {messages.map((message) => (
             <div key={message.id}>
@@ -99,16 +99,16 @@ export default function Page() {
       <div className={`${
         hasMessages 
           ? 'fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t' 
-          : 'fixed inset-0 flex flex-col items-center justify-center bg-transparent'
-        } z-40 transition-all duration-300`}>
+          : 'flex flex-col items-center justify-center bg-transparent'
+        } z-40 transition-all duration-300 ${!hasMessages ? '-mt-10 md:my-10' : ''}`}>
         <div className={`${
           hasMessages 
-            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4 relative' 
+            ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4' 
             : 'w-full md:max-w-3xl mx-auto px-4 md:px-6'
           }`}>
           {!hasMessages && (
-            <div className="text-center pb-6 md:pb-8">
-              <h1 className="text-3xl md:text-6xl font-medium text-gray-800 mb-3 md:mb-4">Chat with JFK Files</h1>
+            <div className="text-center pb-4 md:pb-8">
+              <h1 className="text-3xl md:text-6xl font-medium text-gray-800 mb-3 md:mb-4 mt-0 md:mt-0">Chat with JFK Files</h1>
               <p className="text-md md:text-xl text-gray-600 mb-6 px-4 max-w-3xl mx-auto">find hidden secrets in those 80 thousand pages of JFK files</p>
             </div>
           )}
@@ -148,14 +148,14 @@ export default function Page() {
           
           {!hasMessages && (
             <>
-              <div className="mt-8 md:mt-10">
+              <div className="mt-6 md:mt-10">
                 <SuggestedQuestions 
                   onSelectQuestion={handleSelectQuestion} 
                   isLoading={isLoading}
                 />
               </div>
 
-              <div className="text-center pt-6 md:mt-6 text-gray-600 text-xs md:text-sm px-4">
+              <div className="text-center pt-4 md:mt-6 text-gray-600 text-xs md:text-sm px-4">
                 {isLoading ? (
                   <div className="flex items-center justify-center gap-2">
                     <span>Searching JFK files</span>
