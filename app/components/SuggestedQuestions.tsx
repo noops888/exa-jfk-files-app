@@ -25,10 +25,10 @@ interface SuggestedQuestionsProps {
 
 const SuggestedQuestions: React.FC<SuggestedQuestionsProps> = ({ onSelectQuestion, isLoading = false }) => {
   const questions = [
-    "Was CIA really responsible for the assassination?",
-    "Why were so many JFK witnesses dying mysteriously?",
+    "Was the CIA really responsible for JFK's assassination?",
+    "Why were so many JFK assassination witnesses dying mysteriously?",
     "Did the Mafia plan JFK's assassination?",
-    "What did the government hide in the redacted files?",
+    "What did the government hide in the redacted JFK files?",
   ];
 
   return (
