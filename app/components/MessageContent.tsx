@@ -7,9 +7,9 @@ const MessageContent = ({ content }: { content: string }) => {
     // Process the text in a specific order to avoid conflicts
 
     // Replace heading levels
-    text = text.replace(/^# (.*?)$/gm, '<h1 class="text-2xl font-bold mt-4 mb-2">$1</h1>');
-    text = text.replace(/^## (.*?)$/gm, '<h2 class="text-xl font-bold mt-3 mb-2">$1</h2>');
-    text = text.replace(/^### (.*?)$/gm, '<h3 class="text-lg font-bold mt-3 mb-1">$1</h3>');
+    text = text.replace(/^# (.*?)$/gm, '<span class="text-2xl font-bold">$1</span>');
+    text = text.replace(/^## (.*?)$/gm, '<span class="text-xl font-bold">$1</span>');
+    text = text.replace(/^### (.*?)$/gm, '<span class="text-lg font-bold">$1</span>');
     
     // Replace bold text (**bold**)
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');

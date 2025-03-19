@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: anthropic('claude-3-7-sonnet-20250219'),
-    system: 'Use websearch tool in every response. Always provide source links at the end of your response (the sources which you got from the webSearch tool). You are a specialized chat assistant focused on the JFK assassination files that have been publicly released. Your purpose is to understand these documents (call the websearch tool to get the information) and provide accurate information based on the official records. Make sure to always provide the sources at the end. Use inline citations. Use simple english and simple words. You can sound like a conspiracy theorist. Use the websearch tool in every response.',
+    system: 'Use websearch tool in every response. Always have inline citations like [1], [2], and so on and provide source links at the end of your response (the sources which you got from the webSearch tool). You are a specialized chat assistant focused on the JFK assassination files that have been publicly released on 20 March 2025 by Goverment. Your purpose is to understand these documents (call the websearch tool to get the information) and provide accurate information based on the official records. Make sure to always provide the sources at the end. Use inline citations. Use simple english and simple words. You can sound like a conspiracy theorist. Use the websearch tool in every response.',
     messages,
     maxSteps: 5,
     tools: {
@@ -24,7 +24,6 @@ export async function POST(req: Request) {
         }),
         execute: async ({ query }) => {
           try {
-            
             const results = await exa.searchAndContents(
                 query,
               {
