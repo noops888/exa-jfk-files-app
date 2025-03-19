@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💬 JFK Files Chat App
+### Powered by [Exa](https://exa.ai) - The Web Search API
 
-## Getting Started
+### Try the tool: [JFK Files Chat App](https://jfk-files-app.vercel.app/)
 
-First, run the development server:
+![Screenshot](app/opengraph-image.jpg)
 
+<br>
+
+## 🎯 What is JFK Files Chat App?
+
+The JFK Files Chat App is a free and opensource chat tool that lets you ask questions about the JFK assassination files that were just made public. It uses Exa to search through these files and an AI to help explain them in a way that's easy to understand.
+
+Ask questions about the JFK files and receive responses backed by official documents from the National Archives.
+
+<br>
+
+## 💻 Tech Stack
+- **Search Engine**: [Exa API](https://exa.ai) - Web search API, now with JFK files
+- **Language Model**: Anthropic Claude 3.7 Sonnet
+- **Frontend**: [Next.js 14](https://nextjs.org/docs) with App Router, [TailwindCSS](https://tailwindcss.com), TypeScript
+- **AI Integration**: [Vercel AI SDK](https://sdk.vercel.ai/docs/ai-sdk-core)
+- **Hosting**: [Vercel](https://vercel.com/)
+
+<br>
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js
+- Exa API key
+- Anthropic API key
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/exa-labs/jfk-files-app.git
+cd jfk-files-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables (for Exa and Anthropic)
+```bash
+cp .env.example .env.local
+# Edit .env.local with your API keys
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open http://localhost:3000 in your browser
 
-To learn more about Next.js, take a look at the following resources:
+<br>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔑 API Keys & Environment Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Required API Keys
+* **Exa API Key**: Get from [Exa Dashboard](https://dashboard.exa.ai/api-keys)
+* **Anthropic API Key**: Get from [Anthropic Console](https://console.anthropic.com/settings/keys)
 
-## Deploy on Vercel
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⭐ About [Exa](https://exa.ai)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is powered by [Exa.ai](https://exa.ai), a web search API designed specifically for AI applications. Exa provides:
+
+* Real-time web search capabilities
+* Enhanced response accuracy through current information
+* Comprehensive search results from JFK files and archives
+
+[Try Exa API](https://dashboard.exa.ai)
+
+<br>
+
+---
+
+Built with ❤️ by the Exa team
