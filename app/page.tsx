@@ -1,12 +1,26 @@
 'use client';
 
 import { useChat } from 'ai/react';
+import { useRef } from 'react';
 import MessageContent from './components/MessageContent';
+import SuggestedQuestions from './components/SuggestedQuestions';
 
 
 export default function Page() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading, setInput } = useChat();
   const hasMessages = messages.length > 0;
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSelectQuestion = (question: string) => {
+    setInput(question);
+    // Use setTimeout to ensure setInput has completed before submitting
+    setTimeout(() => {
+      if (formRef.current) {
+        const event = new Event('submit', { bubbles: true, cancelable: true });
+        formRef.current.dispatchEvent(event);
+      }
+    }, 0);
+  };
 
   return (
     <>
@@ -85,26 +99,26 @@ export default function Page() {
       <div className={`${
         hasMessages 
           ? 'fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t' 
-          : 'fixed inset-0 flex items-center justify-center bg-transparent'
+          : 'fixed inset-0 flex flex-col items-center justify-center bg-transparent'
         } z-40 transition-all duration-300`}>
         <div className={`${
           hasMessages 
             ? 'w-full md:max-w-5xl mx-auto px-4 md:px-6 py-4' 
-            : 'w-full md:max-w-2xl mx-auto px-4 md:px-6'
+            : 'w-full md:max-w-3xl mx-auto px-4 md:px-6'
           }`}>
           {!hasMessages && (
-            <div className="text-center mb-8">
-              <h1 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">Chat with JFK Files</h1>
-              <p className="text-lg md:text-xl text-gray-600 mb-6 px-4 max-w-3xl mx-auto">find hidden secrets in those 80 thousand pages of JFK files</p>
+            <div className="text-center pb-6 md:pb-8">
+              <h1 className="text-3xl md:text-6xl font-medium text-gray-800 mb-3 md:mb-4">Chat with JFK Files</h1>
+              <p className="text-md md:text-xl text-gray-600 mb-6 px-4 max-w-3xl mx-auto">find hidden secrets in those 80 thousand pages of JFK files</p>
             </div>
           )}
-          <form onSubmit={handleSubmit} className="relative flex w-full">
+          <form ref={formRef} onSubmit={handleSubmit} className="relative flex w-full">
             <input
               value={input}
               onChange={handleInputChange}
               placeholder="Ask something..."
               className="w-full p-3 md:p-4 pr-[100px] md:pr-[130px] bg-white border border-gray-200 rounded-full shadow-sm 
-              focus:outline-none focus:ring-2 focus:ring-[var(--brand-default)] focus:ring-opacity-20 
+              focus:outline-none focus:ring-1 focus:ring-[var(--brand-default)] focus:ring-opacity-20 
               focus:border-[var(--brand-default)] text-sm md:text-base transition-all duration-200 
               placeholder:text-gray-400 hover:border-gray-300"
             />
@@ -119,13 +133,36 @@ export default function Page() {
               Ask
             </button>
           </form>
+          
           {!hasMessages && (
-            <div className="text-center mt-4 md:mt-6 text-gray-600 text-xs md:text-sm px-4">
-              <span>powered by </span>
-              <a href="https://exa.ai" target="_blank" className="underline hover:text-[var(--brand-default)]">
-                Exa - The Web Search API
-              </a>
-            </div>
+            <>
+              <div className="mt-8 md:mt-10">
+                <SuggestedQuestions 
+                  onSelectQuestion={handleSelectQuestion} 
+                  isLoading={isLoading}
+                />
+              </div>
+
+              <div className="text-center pt-6 md:mt-6 text-gray-600 text-xs md:text-sm px-4">
+                {isLoading ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <span>Searching JFK files</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-[bounce_1s_infinite]"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-[bounce_1s_infinite_200ms]"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-[bounce_1s_infinite_400ms]"></div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <span>powered by </span>
+                    <a href="https://exa.ai" target="_blank" className="underline hover:text-[var(--brand-default)]">
+                      Exa - The Web Search API
+                    </a>
+                  </>
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
