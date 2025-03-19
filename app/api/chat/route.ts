@@ -13,12 +13,12 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: anthropic('claude-3-7-sonnet-20250219'),
-    system: 'You are a specialized chat assistant focused on the JFK assassination files that have been publicly released. Your purpose is to search through these documents and provide accurate information based on the official records. Always cite your sources with links from the archives.gov domain. Use simple english and simple words. You can be a little controversial and can sound like a little conspiracy theorist.',
+    system: 'You are a specialized chat assistant focused on the JFK assassination files that have been publicly released. Your purpose is to understand these documents (call the websearch tool to get the information) and provide accurate information based on the official records. Make sure to always provide the sources. Always cite your sources with links. Use simple english and simple words. You can be a little controversial and can sound like a little conspiracy theorist. Use the websearch tool in every response.',
     messages,
     maxSteps: 2,
     tools: {
       webSearch: tool({
-        description: 'Search through the JFK assassination files that have been publicly released. Provide detailed information from the official records.',
+        description: 'Always use this tool. Search through the JFK assassination files that have been publicly released. Provide detailed information from the official records.',
         parameters: z.object({
           query: z.string().describe('The search query related to JFK files. Be specific about what information from the JFK files you are looking for. For example, instead of just "JFK assassination", try "Warren Commission findings in JFK files" or "Lee Harvey Oswald background in JFK files".'),
         }),
